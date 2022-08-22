@@ -144,7 +144,7 @@ INTERNAL_IPS = [
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-    'http://51.79.223.164:3001/',
+    'http://51.79.223.164:3001',
     FRONTEND_URL,
 )
 
