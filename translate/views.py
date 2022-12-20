@@ -1,6 +1,6 @@
 from random import choice
 
-from google_trans_new import google_translator
+from googletrans import Translator
 from rest_framework import serializers
 from rest_framework.decorators import api_view
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
@@ -10,21 +10,18 @@ from rest_framework.response import Response
 from translate.models import Sentence, Translation
 from translate.serializers import TranslateSerializer, SentenceSerializer, TranslationSerializer
 
-# translator = Translator()
-translator = google_translator()
+translator = Translator()
 
 
 @api_view(['POST'])
 def get_translated(request):
     data = JSONParser().parse(request)
     original = data['text']
-    # translate = 'Tested text'
-    # translated_sentence = translator.translate(original, src="ms", dest="ar")
-    translated = translator.translate(original, lang_src='ms', lang_tgt='ar')
+    translated = translator.translate(original, src="ms", dest="ar")
 
     main_data = {
         'original': original,
-        'translated': translated,
+        'translated': translated.text,
     }
 
     serializer = TranslateSerializer(data=main_data)
